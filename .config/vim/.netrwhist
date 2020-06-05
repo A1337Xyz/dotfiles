@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/anon/Downloads/papes/phone'
+let g:netrw_dirhist_8='/home/anon/.config/vim/syntax/colornames'
+let g:netrw_dirhist_7='/home/anon/.config/vim/syntax'
+let g:netrw_dirhist_6='/home/anon/.config/cava'
+let g:netrw_dirhist_5='/home/anon/.config/mpv'
+let g:netrw_dirhist_4='/home/anon/.config/sxhkd'
+let g:netrw_dirhist_3='/home/anon/.scripts/ShellScript/homepage'
+let g:netrw_dirhist_2='/home/anon/.config/X11'
+let g:netrw_dirhist_1='/home/anon/.vim'

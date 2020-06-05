@@ -1,0 +1,95 @@
+#!/bin/bash
+function fox() { command firefox "$@" &>/dev/null & }
+function libre() { command libreoffice "$@" &>/dev/null & }
+function zathura() { command zathura "$@" &>/dev/null & }
+function pinta() { command pinta "$@" &>/dev/null & }
+function lb() { awk '!/^#/' "$XDG_CONFIG_HOME"/sxhkd/sxhkdrc; } # list bindings
+function f() { find . -type f -iregex $@; }
+function fr() { find . -type f -exec basename {} \; | sort | uniq -d | xargs -I{} find . -iname {}; } # find repeated files
+function dubt() { aria2c -S ./*.torrent | awk '/^Total|^>>>/{print}'; }
+function d() { du -had1 "${1-.}" 2>/dev/null | sort -h; }
+function line() { sed "${1}!d" "$2"; }
+function bcat() { aria2c -S "$1" | less; }
+function wallpaper() { awk -F'"' '{print $2}' ~/.cache/xwallpaper 2>/dev/null; }
+function ex() {
+    [ -f "$1" ] || return 1
+    case "$1" in
+        *.tar.bz2) tar xvjf "$1" ;;
+        *.tar.gz) tar xvzf "$1" ;;
+        *.bz2) bunzip2 "$1" ;;
+        *.rar) unrar x "$1" "${1%.*}/" && rm -fi "$1";;
+        *.gz) gunzip "$1" ;;
+        *.tar) tar xvf "$1" ;;
+        *.tbz2) tar xvjf "$1" ;;
+        *.tgz) tar xvzf "$1" ;;
+        *.zip) unzip "$1" -d "${1%.*}" && rm -fi "$1";;
+        *.Z) uncompress "$1" ;;
+        *.7z) 7z x "$1" ;;
+        -*) return 1 ;;
+        *) printf "'%s' cannot be extracted\n" "$1" ;;
+    esac
+}
+function repeat() {
+    # Repeat n times command
+    local max=$1; shift;
+    for ((i=1; i <= max ; i++)); do
+        eval "$@";
+    done
+}
+function lst() {
+    # list total of files
+    local target="$1"
+    [ -z "$1" ] && local target="."
+    find "$target" -maxdepth 1 | while read -r i;do
+        [ -d "$i" ] && printf '%4d %s\n' "$(ls -1A "$i" | wc -l)" "$i"
+    done | sort -n
+}
+function lstar() {
+    # list tar files
+    for i in "$@";do
+        clear
+        printf '>>> \033[1;31m%s\033[m\n' "$i"
+        tar tvf "$i" 2>/dev/null | less || continue
+        read -rp "extract '$i'? (y/N) " ask
+        [ "${ask,,}" = 'y' ] && { tar xvf "$i"; break; }
+    done
+    return 0
+}
+function m2t() {
+    local tmpdir torrent torrent_name
+    tmpdir="$(mktemp -d)"
+    aria2c -q --bt-save-metadata --bt-metadata-only --bt-stop-timeout=600 \
+        -d "$tmpdir" "$1" || { rm -rf "$tmpdir"; return 1; }
+    torrent=$(find "$tmpdir" -type f)
+    torrent_name="$(aria2c -S "$torrent" | awk -F':' '/^Name/{print $2}' | sed 's/^\s*//').torrent"
+    mv -v "$torrent" "$torrent_name"
+    rm -rf "$tmpdir"
+}
+function bkp() {
+    [ -a "$1" ] && { printf '"%s" already exists\n' "$1"; return 1; }
+    local tar="$1" ; shift
+    tar --numeric-owner -pcaf "$tar" "$@" 
+}
+function sp() {
+    local credentials="$XDG_CONFIG_HOME"/ncspot/credentials.toml.bkp
+    if ! [ -f "${credentials%.*}" ];then
+        cp -v "$credentials" "${credentials%.*}" 
+    fi
+    pgrep -fa ncspot 2>/dev/null && { printf 'ncspot is aready running\n'; return 1; }
+    command ncspot && clear
+}
+function ren5sum() {
+    if [ -f "$1" ];then
+        mv -vi "$1" "$(md5sum "$1" | awk '{print $1}').${1##*.}"
+    fi
+}
+function mntdroid() {
+    [ -z "$1" ] && { printf 'Usage: %s IP\n' "$0" ; return 1; }
+    sshfs "$1":/data/data/com.termux/files/home /mnt/termux \
+        -o port=8022,allow_other,no_check_root,follow_symlinks,reconnect,IdentityFile=/home/anon/.ssh/id_rsa
+}
+function lsd() {
+    find . -maxdepth 1 -iregex '.*\.\(mp[3-4]\|mkv\|avi\|webm\)' | while read -r i;do
+        mediainfo --Output='General;%CompleteName%: %Duration/String%' "$i";
+    done
+}

@@ -1,0 +1,20 @@
+[saved_state]
+volume = 80
+repeat = "playlist"
+shuffle = false
+
+[theme]
+primary = "white"
+secondary = "light red"
+title = "blue"
+playing = "green"
+playing_bg = "light black"
+highlight = "green"
+highlight_bg = "light black"
+error = "white"
+error_bg = "red"
+statusbar_progress = "blue"
+statusbar = "green"
+statusbar_bg = "light black"
+cmdline = "green"
+cmdline_bg = "black"

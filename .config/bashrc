@@ -1,0 +1,24 @@
+[[ $- != *i* ]] && return
+
+set -o noclobber
+shopt -s autocd
+shopt -s checkwinsize
+shopt -s no_empty_cmd_completion
+eval "$(dircolors -b)"
+
+BR='\e[1;31m' BG='\e[1;32m' BY='\e[1;33m' BB='\e[1;34m' BM='\e[1;35m' BC='\e[1;36m' BW='\e[1;37m'
+NC='\e[m' BOLD='\e[1m'
+
+_ip() { hostname -i | sed 's/.$//'; }
+_status() {
+    [ $1 -eq 0 ] && printf '\e[1;32m' || printf '\e[1;31m'
+}
+PS1="\[$BB\]\w\[$NC\]\n\[\$(_status \$?)\]>\[$NC\] "
+
+bind -x '"\C-f":"cd $(find -type d | fzf)"'
+
+source /usr/share/bash-completion/bash_completion
+source ~/.scripts/ShellScript/bash_functions >/dev/null
+source ~/.config/bash_aliases 
+
+[ "$PWD" != "$HOME" ] && cd "$HOME"

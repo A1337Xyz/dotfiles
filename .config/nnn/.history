@@ -1,0 +1,23 @@
+sxiv -a
+sxiv
+sxiv -a *.gif
+rm *.gif
+mpv *
+mpv *
+mpv *
+mpv *
+mpv *
+mpv *
+mpv *
+mpv *
+mpv *
+mpv *
+mpv *
+mpv * &
+mpv * &
+mpv *
+mpv * &
+vim
+aria2bt
+e
+unzip Harry_Potter_and_the_Chamber_of_Secrets_2002.mkv 

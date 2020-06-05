@@ -1,0 +1,68 @@
+### DEFAULT
+alias ls='ls -vNh --color'
+alias dir='dir --color'
+alias vdir='vdir --color'
+alias grep='grep --color'
+alias fgrep='fgrep --color'
+alias egrep='egrep --color'
+alias diff='diff --color'
+alias tree='tree -Ch'
+alias df='df -Th'
+alias free='free -h'
+alias mv='mv -i'
+alias rm='rm -i'
+alias ffmpeg='ffmpeg -hide_banner'
+alias rsync='rsync -ah --progress'
+alias shutdown='/sbin/shutdown'
+alias suspend='systemctl suspend'
+alias reboot='/sbin/reboot'
+alias xclip='xclip -sel clip'
+alias iftop='sudo iftop -nN'
+alias iotop='sudo iotop -o -d 5'
+### ls family
+alias sl='ls'
+alias lx='ls -lB'           #  Sort by extension.
+alias lk='ls -lSr'          #  Sort by size, biggest last.
+alias lt='ls -ltr'          #  Sort by date, most recent last.
+alias lc='ls -ltcr'         #  Sort by/show change time,most recent last.
+alias lu='ls -ltur'         #  Sort by/show access time,most recent last.
+alias la='ls -A'            #  Show hidden files.
+alias l='ls -v'             #  list entries by columns
+alias ll="ls -lv"
+alias lm='ll |less'         #  Pipe through 'less'
+alias lr='ll -R'            #  Recursive ls.
+alias lh='ls -A --color=no | grep ^\\. | pr -t3w 80'     # only hidden files
+### PACMAN
+alias pSs='pacman -Ss'
+alias pSi='pacman -Si'
+alias pSg='pacman -Sg'      # List all installed packages of a group
+alias pQe='pacman -Qe'      # List installed packages
+alias pQm='pacman -Qm'      # List all packages manually downloaded and installed or packages removed from the repositories
+alias pQs='pacman -Qs'      # List packages by regex
+alias pQent='pacman -Qent'  # List all explicitly installed native packages
+alias pS='sudo pacman -S'   # Install package
+alias pSyu='sudo pacman -Syu'
+alias pRns='sudo pacman -Rns $(pacman -Qtdq)' # Remove unused packages (orphans)
+### SHORTCUTS
+alias clock='tty-clock -scC 7'
+alias iv='vi'
+alias vi='vim'
+alias r='ranger'
+alias n='nnn'
+alias ptop='sudo powertop'
+alias youtube-dl='youtube-dl -i -o "%(title)s.%(ext)s" --add-metadata'
+alias ytdl_v='youtube-dl -f "[height<=720]"'
+alias ytdl_a='youtube-dl -x'
+alias mpvY='mpv --ytdl-format="[height<=720]"'
+alias edi3='vim ~/.config/i3/config'
+alias mdlnad='minidlnad -f ~/.config/minidlna/minidlna.conf'
+alias py='python3'
+alias mi='mediainfo'
+alias sss='sudo ss -tupan'
+alias fe='find . -empty'
+alias fwindows='find . -type f -iregex ".*\.\(ini\|exe\|nfo\|bat\)"'
+alias sx='startx &>/dev/null'
+alias S='vim $(find ~/.scripts/ShellScript -type f | fzf)'
+alias m='udisksctl mount -b'
+alias u='udisksctl unmount -b'
+alias ff='vim "$(find ~/.scripts/ShellScript/ffmpeg_scripts -type f | fzf)"'

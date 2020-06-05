@@ -1,0 +1,62 @@
+set suffixes+=.aux,.bbl,.blg,.brf,.cb,.dvi,.idx,.ilg,.ind,.inx,.jpg,.log,.out,.png,.toc
+set suffixes-=.h
+set suffixes-=.obj
+set undodir=$XDG_DATA_HOME/vim/undo
+set directory=$XDG_DATA_HOME/vim/swap
+set backupdir=$XDG_DATA_HOME/vim/backup
+set viminfo+='1000,\"100,:20,%,n$XDG_DATA_HOME/vim/viminfo
+set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIMRUNTIME
+set nocompatible
+set hidden
+set wildmenu
+set showcmd
+set ignorecase
+set smartcase
+set backspace=indent,eol,start
+set autoindent
+set nostartofline
+set ruler
+set laststatus=2
+set visualbell
+set t_vb=
+set mouse=a
+set cmdheight=2
+"set number
+set notimeout ttimeout ttimeoutlen=200
+set pastetoggle=<F11>
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+filetype indent plugin on
+syntax on
+colorscheme dracula
+hi Normal ctermbg=none 
+"colorscheme base16-gruvbox-dark-hard " bad highlighting
+"colorscheme base16-dracula " bad highligthing
+
+if &compatible
+  set nocompatible
+endif
+
+if has("autocmd")
+  augroup templates
+    autocmd BufNewFile *.sh 0r ~/.config/vim/templates/skeleton.sh
+    autocmd BufNewFile *.py 0r ~/.config/vim/templates/skeleton.py
+    autocmd BufNewFile *.html 0r ~/.config/vim/templates/skeleton.html
+    autocmd BufNewFile *.css 0r ~/.config/vim/templates/skeleton.css
+  augroup END
+endif
+
+" https://vim.fandom.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END

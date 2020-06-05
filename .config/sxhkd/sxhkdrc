@@ -1,0 +1,69 @@
+super + Escape
+    pkill -USR1 -x sxhkd
+
+XF86AudioRaiseVolume
+    pactl set-sink-volume $(pacmd list-sinks | grep -e index | grep -o [0-9]) +5%
+
+XF86AudioLowerVolume
+    pactl set-sink-volume $(pacmd list-sinks | grep -e index | grep -o [0-9]) -5%
+
+XF86AudioMute
+    pactl set-sink-mute $(pacmd list-sinks | grep -e index | grep -o [0-9]) toggle
+
+super + d
+    dmenu_run -p "dmenu:"
+
+super + {comma,period}
+   mpc {prev,next} 
+#playerctl -a {previous,next}
+
+super + semicolon
+    mpc toggle   
+#playerctl -a play-pause
+
+super + z
+    scrcpy -S
+
+super + shift + Return
+    urxvt -title floating
+
+super + u
+    urxvt -title floating -e pulsemixer
+
+super + o
+    urxvt -e ranger
+
+#super + t 
+#    i3-msg -t get_workspaces | jq -r .[].name | tr '\\n' ' ' | xargs -0 notify-send "Workspaces"
+
+Print
+    scrot -q 100 -m "$HOME/Pictures/screenshots/screenshot_%H%M%S_%d%m%Y.png" -e 'notify-send $f'
+
+super + Print
+    scrot -q 100 -u "$HOME/Pictures/screenshots/screenshot_%H%M%S_%d%m%Y.png" -e 'notify-send $f'
+
+super + shift + s
+    sleep 1 ; scrot -q 100 -s "$HOME/Pictures/screenshots/screenshot_%H%M%S_%d%m%Y.png" -e 'notify-send $f'
+
+ctrl + Print
+    scrot -q 100 -u "/tmp/screenshot_%H%M%S_%d%m%Y.png" \
+          -e 'xclip -sel clip -t image/png -i $f; notify-send $f'
+
+super + ctrl + Print
+    sleep .5 ; scrot -q 100 -s "/tmp/screenshot_%H%M%S_%d%m%Y.png"  \
+          -e 'xclip -sel clip -t image/png -i $f; notify-send $f'
+
+super + x
+    xwall.sh --dmenu 
+
+super + shift + x
+    xwall.sh --sxiv
+
+super + shift + q
+    qrcode.sh
+
+super + F5
+    chscreen.sh
+
+super + shift + s
+    scrotsel.sh

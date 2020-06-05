@@ -1,0 +1,7 @@
+#!/bin/sh
+if command -v aria2c >/dev/null;then
+    [ -n "$1" ] && aria2c -S "$1" | less
+else
+    printf 'install aria2c\n'
+    exit 1
+fi

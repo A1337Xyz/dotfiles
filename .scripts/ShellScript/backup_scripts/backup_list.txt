@@ -1,0 +1,16 @@
+# use $HOME environment variable or the absolute path to specify the backup path
+# do not use ~
+$HOME/.xinitrc
+$HOME/.vimrc
+$HOME/.Xresources
+$HOME/.bashrc
+$HOME/.bash_aliases
+$HOME/.bash_functions
+$HOME/.nanorc
+$HOME/.moc/config
+$HOME/.config/i3*
+$HOME/.config/cava/config
+$HOME/.config/ranger/*.conf
+$HOME/.config/ranger/scope.sh
+$HOME/.config/sxhkd/sxhkdrc
+$HOME/.scripts

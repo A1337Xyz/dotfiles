@@ -1,0 +1,44 @@
+lyrics_directory = ~/.config/ncmpcpp/lyrics
+
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "10" 
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+visualizer_look = ●▮
+
+progressbar_look = "▃▃▃"
+autocenter_mode = "yes"
+centered_cursor = "yes"
+
+execute_on_song_change = "~/.scripts/ShellScript/mpc_scripts/playing_now.sh"
+# freezes waiting for another response.
+# allow_for_physical_item_deletion = yes 
+
+# albumart
+playlist_display_mode = "classic"
+browser_display_mode = "columns"
+search_engine_display_mode = "columns"
+playlist_editor_display_mode = "columns"
+user_interface = "classic"
+
+## Colors 
+
+song_columns_list_format = "(40)[white]{t|f} (20)[blue]{a} (37)[white]{b} (5)[red]{l}"
+current_item_prefix = $(white)$r
+colors_enabled = "yes"
+visualizer_color = blue
+empty_tag_color = "blue"
+header_window_color = "blue"
+volume_color = "white"
+state_line_color = "blue"
+state_flags_color = "white"
+main_window_color = "blue"
+color1 = "blue"
+color2 = "blue"
+progressbar_color = "blue"
+progressbar_elapsed_color = "white"
+statusbar_color = "white"
+statusbar_time_color = "blue"
+player_state_color = "white"
+alternative_ui_separator_color = "red"
