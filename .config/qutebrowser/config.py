@@ -1,5 +1,4 @@
 __import__('dracula_theme').main(c)
-#__import__('base16_gruvbox_dark_hard').main(c)
 
 c.url.searchengines = {
     'DEFAULT': 'https://duckduckgo.com/?q={}',
@@ -33,7 +32,6 @@ config.bind('yd', "hint links spawn urxvt -geometry 75x10 -title ytdl -e ytdl.sh
 c.tabs.show = "always"
 c.tabs.background = False
 c.tabs.indicator.width = 0
-c.statusbar.hide = False
 c.content.autoplay = False
 c.scrolling.smooth = False
 c.colors.webpage.prefers_color_scheme_dark = True
