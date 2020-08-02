@@ -1,40 +1,32 @@
+super + n
+    alacritty -e lf
+
 super + Escape
     pkill -USR1 -x sxhkd
 
 XF86AudioRaiseVolume
-    pactl set-sink-volume $(pacmd list-sinks | grep -e index | grep -o [0-9]) +5%
+    pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGRTMIN+10 i3blocks
+#amixer -q sset Master 5%+ # && pkill -SIGRTMIN+10 i3blocks
 
 XF86AudioLowerVolume
-    pactl set-sink-volume $(pacmd list-sinks | grep -e index | grep -o [0-9]) -5%
+    pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -SIGRTMIN+10 i3blocks
+#amixer -q sset Master 5%- # && pkill -SIGRTMIN+10 i3blocks
 
 XF86AudioMute
-    pactl set-sink-mute $(pacmd list-sinks | grep -e index | grep -o [0-9]) toggle
+    pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -SIGRTMIN+10 i3blocks
+#amixer -q sset Master toggle # && pkill -SIGRTMIN+10 i3blocks
 
-super + d
-    dmenu_run -p "dmenu:"
+XF86MonBrightnessDown
+    xbacklight -dec 5
 
-super + {comma,period}
-   mpc {prev,next} 
-#playerctl -a {previous,next}
+XF86MonBrightnessUp
+    xbacklight -inc 5
 
-super + semicolon
-    mpc toggle   
-#playerctl -a play-pause
+XF86AudioPlay
+    playercontrol.sh toggle
 
-super + z
-    scrcpy -S
-
-super + shift + Return
-    urxvt -title floating
-
-super + u
-    urxvt -title floating -e pulsemixer
-
-super + o
-    urxvt -e ranger
-
-#super + t 
-#    i3-msg -t get_workspaces | jq -r .[].name | tr '\\n' ' ' | xargs -0 notify-send "Workspaces"
+{XF86AudioPrev,XF86AudioNext}
+    playercontrol.sh {prev,next}
 
 Print
     scrot -q 100 -m "$HOME/Pictures/screenshots/screenshot_%H%M%S_%d%m%Y.png" -e 'notify-send $f'
@@ -46,24 +38,13 @@ super + shift + s
     sleep 1 ; scrot -q 100 -s "$HOME/Pictures/screenshots/screenshot_%H%M%S_%d%m%Y.png" -e 'notify-send $f'
 
 ctrl + Print
+    scrot -q 100 "/tmp/screenshot_%H%M%S_%d%m%Y.png" \
+          -e 'xclip -sel clip -t image/png -i $f; notify-send $f'
+
+ctrl + shift + Print
     scrot -q 100 -u "/tmp/screenshot_%H%M%S_%d%m%Y.png" \
           -e 'xclip -sel clip -t image/png -i $f; notify-send $f'
 
 super + ctrl + Print
     sleep .5 ; scrot -q 100 -s "/tmp/screenshot_%H%M%S_%d%m%Y.png"  \
           -e 'xclip -sel clip -t image/png -i $f; notify-send $f'
-
-super + x
-    xwall.sh --dmenu 
-
-super + shift + x
-    xwall.sh --sxiv
-
-super + shift + q
-    qrcode.sh
-
-super + F5
-    chscreen.sh
-
-super + shift + s
-    scrotsel.sh

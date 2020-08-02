@@ -1,5 +1,6 @@
 [[ $- != *i* ]] && return
 
+set -o vi
 set -o noclobber
 shopt -s autocd
 shopt -s checkwinsize
@@ -20,5 +21,3 @@ bind -x '"\C-f":"cd $(find -type d | fzf)"'
 source /usr/share/bash-completion/bash_completion
 source ~/.scripts/ShellScript/bash_functions >/dev/null
 source ~/.config/bash_aliases 
-
-[ "$PWD" != "$HOME" ] && cd "$HOME"

@@ -93,3 +93,4 @@ function lsd() {
         mediainfo --Output='General;%CompleteName%: %Duration/String%' "$i";
     done
 }
+unset -f lsd
