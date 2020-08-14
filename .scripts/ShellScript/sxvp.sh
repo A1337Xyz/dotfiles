@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-command -v sxiv | { printf 'install sxiv\n'; exit 1; }
-command -v mpv | { printf 'install mpv\n'; exit 1; }
+command -v sxiv || { printf 'install sxiv\n'; exit 1; }
+command -v ffmpegthumbnailer || { printf 'install ffmpegthumbnailer\n'; exit 1; }
+command -v mpv || { printf 'install mpv\n'; exit 1; }
 
 CACHE=~/.cache/.video_preview
 [ -d "$CACHE" ] || mkdir -v "$CACHE"
