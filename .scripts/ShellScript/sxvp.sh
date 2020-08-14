@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-command -v sxiv || { printf 'install sxiv\n'; exit 1; }
-command -v ffmpegthumbnailer || { printf 'install ffmpegthumbnailer\n'; exit 1; }
-command -v mpv || { printf 'install mpv\n'; exit 1; }
+dependencies=(sxiv ffmpegthumbnailer mpv)
+for dep in "${dependencies[@]}";do
+    command -v "$dep" >/dev/null || { printf 'install %s\n' "$dep"; exit 1; }
+done
 
 CACHE=~/.cache/.video_preview
 [ -d "$CACHE" ] || mkdir -v "$CACHE"
