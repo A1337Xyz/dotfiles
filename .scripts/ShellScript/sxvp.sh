@@ -14,5 +14,5 @@ done | sxiv -aipqto 2>/dev/null | while read -r i;do
     fname="${i##*/}"
     fname="${fname%.*}"
     printf '%s\0' "$fname"
-done | xargs -r0I{} mpv --no-audio {}
+done | xargs -r0I{} mpv {}
 rm -rf "$tmpdir"
