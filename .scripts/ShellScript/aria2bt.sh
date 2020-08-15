@@ -4,16 +4,23 @@ command -v aria2c &>/dev/null || { printf 'install aria2\n'; exit 1; }
 
 INCOMPLETE_TORRENTS="${HOME}/Downloads/.torrents"
 COMPLETE_TORRENTS="${HOME}/Downloads"
-TIMEOUT=0 # disabled
+TIMEOUT=1200 # 20min
+ERROR_DIR="${HOME}/Downloads/.torrents/error"
 
 [ -d "$INCOMPLETE_TORRENTS" ] || mkdir -v "$INCOMPLETE_TORRENTS"
+[ -d "$ERROR_DIR" ] || mkdir -v "$ERROR_DIR"
 
 torrent="$1"
 if [ -z "$torrent" ];then
-    for torrent in "$INCOMPLETE_TORRENTS"/*.torrent "$COMPLETE_TORRENTS"/*.torrent;do
+    for torrent in "$COMPLETE_TORRENTS"/*.torrent "$ERROR_DIR"/*.torrent;do
         [ -f "$torrent" ] && break
-    done
-    [ -z "$torrent" ] && { printf 'nothing found\n'; exit 1; }
+    done 
+    if [ -n "$torrent" ];then
+        mv -vn "$torrent" "$INCOMPLETE_TORRENTS"  
+        torrent="${INCOMPLETE_TORRENTS}/${torrent##*/}"
+    else
+        printf 'nothing found\n' ; exit 1
+    fi
 elif [ -f "$torrent" ];then
     du -ad1 "$INCOMPLETE_TORRENTS" | grep -q "$torrent" || {
         mv -vn "$torrent" "$INCOMPLETE_TORRENTS";
@@ -45,5 +52,6 @@ if aria2c --bt-stop-timeout=$TIMEOUT -d "$INCOMPLETE_TORRENTS" "$torrent";then
     exit 0
 else
     notify-send "$TORRENT_NAME" "finished with errors"
+    mv -v "$torrent" "$ERROR_DIR"
     exit 1
 fi

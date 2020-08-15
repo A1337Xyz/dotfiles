@@ -3,14 +3,18 @@ lock=/tmp/cGxheWluZ19ub3cuc2gK.lock
 [ -f "$lock" ] && exit 1
 touch "$lock"
 end() { rm -f "$lock" ; exit 0 ; }
-trap end EXIT SIGINT SIGKILL SIGTERM
+trap end EXIT SIGINT SIGTERM
 [ -d ~/.cache/albums ] || mkdir ~/.cache/albums
 curr_song=
 while :;do
-    playerctl -l 2>/dev/null | grep -q 'spotify\|ncspot' || { sleep 60; continue; }
+    players=($(playerctl -l | grep -v chromium))
+    for player in "${players[@]}";do
+        [ $(playerctl -p $player status) = Playing ] && break
+    done
+    [ -z "$player" ] && { sleep 60 ; continue; }
     IFS=';' read -r -a song < <(\
-        playerctl --player="$l" metadata\
-        --format '{{xesam:artist}};{{xesam:title}};{{mpris:length}};{{mpris:artUrl}}'\ 
+        playerctl --player=$player metadata\
+        --format '{{xesam:artist}};{{xesam:title}};{{mpris:length}};{{mpris:artUrl}}'\
     )
     ms=${song[2]}
     s=$((ms / 10**6))
@@ -25,5 +29,5 @@ while :;do
     fi
     icon=~/.cache/albums/"${song[3]##*/}"
     notify-send -i "$icon" -t 7000 "Playing Now ♪" "Artist: ${song[0]}\nTitle: ${song[1]}\nDuration: ${song[2]}"
-    sleep 60
+    sleep 40
 done

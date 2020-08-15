@@ -9,9 +9,9 @@ else
             wallpaper="$(find "$(find "$target" -maxdepth 1 -type d | dmenu -c -i -l 10)" -iname '*.jpg' | shuf -n1)" 
             ;;
         --sxiv)
-            wallpaper="$(find "$target" -maxdepth 1 -type d | dmenu -c -i -l 10 | xargs -rI{} sxiv -ioqrt {})"
+            wallpaper="$(find "$target" -maxdepth 1 -type d | dmenu -c -i -l 10 | xargs -rI{} sxiv -ioqrtf {})"
             ;;
-        *) [ -f "$1" ] && wallpaper="$1" ;;
+        *) [ -f "$1" ] && wallpaper="$(realpath "$1")" ;;
     esac
 fi
 [ -z "$wallpaper" ] && exit 1

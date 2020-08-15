@@ -5,21 +5,14 @@ for dep in "${dependencies[@]}";do
     command -v "$dep" >/dev/null || { printf 'install %s\n' "$dep"; exit 1; }
 done
 
-CACHE=~/.cache/.video_preview
-[ -d "$CACHE" ] || mkdir -v "$CACHE"
-
-declare -A videos
-while read -r i;do
-    file_hash=$(md5sum "$i" | awk '{print $1}')
-    videos[$file_hash]="$i"
-done < <(find . -maxdepth 1 -iregex '.*\(mp4\|mkv\|webm\|avi\)' -type f)
-
-for k in "${!videos[@]}";do
-    fname="$CACHE"/"$k".jpg
-    [ -f "$fname" ] || ffmpegthumbnailer -i "${videos[$k]}" -q 10 -o "$fname"
-    printf '%s\n' "$fname"
-done | sxiv -aiqto 2>/dev/null | while read -r i;do
-    key="${i##*/}"
-    key="${key%.*}"
-    echo "${videos[$key]}"
-done | xargs -I{} mpv --no-audio {}
+tmpdir=$(mktemp -d)
+find . -maxdepth 1 -iregex '.*\(mp4\|mkv\|webm\|avi\)' -type f | while read -r i;do
+    out="$tmpdir"/"${i##*/}".jpg
+    ffmpegthumbnailer -i "$i" -q 10 -o "$out" 2>/dev/null
+    printf '%s\n' "$out"
+done | sxiv -aipqto 2>/dev/null | while read -r i;do
+    fname="${i##*/}"
+    fname="${fname%.*}"
+    printf '%s\0' "$fname"
+done | xargs -r0I{} mpv --no-audio {}
+rm -rf "$tmpdir"
