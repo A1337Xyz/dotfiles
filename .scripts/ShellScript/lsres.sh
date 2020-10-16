@@ -4,5 +4,5 @@ find . -maxdepth 1 -iregex '.*\.\(mp4\|mkv\|avi\|webm\|jpg\|png\|jpeg\)' | while
         jpg|png|jpeg) mediainfo --Output="Image;%Width%x%Height% : $i" "$i" ;;
         *) mediainfo --Output="Video;%Width%x%Height% : $i" "$i" ;;
     esac
-done
+done | sed '/^\s*$/d'
 

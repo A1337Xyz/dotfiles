@@ -28,6 +28,11 @@ while :;do
         fi
     fi
     icon=~/.cache/albums/"${song[3]##*/}"
-    notify-send -i "$icon" -t 7000 "Playing Now ♪" "Artist: ${song[0]}\nTitle: ${song[1]}\nDuration: ${song[2]}"
-    sleep 40
+    if [ $1 = text ];then
+        echo "Playing Now ♪ ${song[0]} ${song[1]} ${song[2]}"
+        break
+    else
+        notify-send -i "$icon" -t 7000 "Playing Now ♪" "Artist: ${song[0]}\nTitle: ${song[1]}\nDuration: ${song[2]}"
+        sleep 60
+    fi
 done

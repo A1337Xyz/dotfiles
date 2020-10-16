@@ -8,11 +8,11 @@ done
 tmpdir=$(mktemp -d)
 find . -maxdepth 1 -iregex '.*\(mp4\|mkv\|webm\|avi\)' -type f | while read -r i;do
     out="$tmpdir"/"${i##*/}".jpg
-    ffmpegthumbnailer -i "$i" -q 10 -o "$out" 2>/dev/null
+    ffmpegthumbnailer -s 300 -i "$i" -q 10 -o "$out" 2>/dev/null
     printf '%s\n' "$out"
 done | sxiv -aipqto 2>/dev/null | while read -r i;do
     fname="${i##*/}"
     fname="${fname%.*}"
     printf '%s\0' "$fname"
-done | xargs -r0I{} mpv {}
+done | xargs -r0I{} mpv --no-audio {}
 rm -rf "$tmpdir"
