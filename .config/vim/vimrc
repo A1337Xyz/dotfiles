@@ -5,7 +5,7 @@ set undodir=$XDG_DATA_HOME/vim/undo
 set directory=$XDG_DATA_HOME/vim/swap
 set backupdir=$XDG_DATA_HOME/vim/backup
 set viminfo+='1000,\"100,:20,%,n$XDG_DATA_HOME/vim/viminfo
-set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIMRUNTIME
+set runtimepath=$HOME/.vim,$HOME/.vim/after,$VIMRUNTIME
 set nocompatible
 set hidden
 set wildmenu
@@ -20,31 +20,37 @@ set laststatus=2
 set visualbell
 set t_vb=
 set mouse=a
-set cmdheight=2
+set cmdheight=1
 "set number
+set background=dark
 set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set cursorline
+set clipboard=unnamedplus
 
-filetype indent plugin on
 syntax on
-colorscheme dracula
-hi Normal ctermbg=none 
-"colorscheme base16-gruvbox-dark-hard " bad highlighting
-"colorscheme base16-dracula " bad highligthing
+"colorscheme vadelma
+"hi CursorLine cterm=NONE ctermbg=black ctermfg=NONE guibg=black guifg=white
+"hi Normal ctermbg=NONE ctermfg=NONE
 
-if &compatible
-  set nocompatible
-endif
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <C-r><C-o>+
+
+autocmd BufNewFile,BufRead lfrc set syntax=config
+autocmd BufNewFile,BufRead *.conf set syntax=config
+filetype indent plugin on
 
 if has("autocmd")
   augroup templates
-    autocmd BufNewFile *.sh 0r ~/.config/vim/templates/skeleton.sh
-    autocmd BufNewFile *.py 0r ~/.config/vim/templates/skeleton.py
-    autocmd BufNewFile *.html 0r ~/.config/vim/templates/skeleton.html
-    autocmd BufNewFile *.css 0r ~/.config/vim/templates/skeleton.css
+    autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+    autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py
+    autocmd BufNewFile *.html 0r ~/.vim/templates/skeleton.html
+    autocmd BufNewFile *.css 0r ~/.vim/templates/skeleton.css
   augroup END
 endif
 
@@ -60,3 +66,26 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+if &compatible
+  set nocompatible
+endif
+
+" Move temporary files to a secure location to protect against CVE-2017-1000382
+if exists('$XDG_CACHE_HOME')
+  let &g:directory=$XDG_CACHE_HOME
+else
+  let &g:directory=$HOME . '/.cache'
+endif
+let &g:undodir=&g:directory . '/vim/undo//'
+let &g:backupdir=&g:directory . '/vim/backup//'
+let &g:directory.='/vim/swap//'
+" Create directories if they doesn't exist
+if ! isdirectory(expand(&g:directory))
+  silent! call mkdir(expand(&g:directory), 'p', 0700)
+endif
+if ! isdirectory(expand(&g:backupdir))
+  silent! call mkdir(expand(&g:backupdir), 'p', 0700)
+endif
+if ! isdirectory(expand(&g:undodir))
+  silent! call mkdir(expand(&g:undodir), 'p', 0700)
+endif
