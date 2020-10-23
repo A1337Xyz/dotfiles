@@ -11,6 +11,7 @@ function line() { sed "${1}!d" "$2"; }
 function bcat() { aria2c -S "$1" | less; }
 function wallpaper() { awk -F'"' '{print $2}' ~/.cache/xwallpaper 2>/dev/null; }
 function freq() { awk -F':' '/cpu MHz/{printf("%.0f MHz ", $2)} END {printf "\n"}' /proc/cpuinfo; }
+function getkeys() { xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'; }
 function ex() {
     [ -f "$1" ] || return 1
     case "$1" in
@@ -37,7 +38,6 @@ function repeat() {
     done
 }
 function lst() {
-    # list total of files
     local target="$1"
     [ -z "$1" ] && local target="."
     find "$target" -maxdepth 1 | while read -r i;do
@@ -99,4 +99,18 @@ function fz() {
         e) $EDITOR "$target" ;;
         *) less "$target" ;;
     esac
+}
+function lsres() {
+    find . -maxdepth 1 -iregex '.*\.\(mp4\|mkv\|avi\|webm\|jpg\|png\|jpeg\)' | while read -r i;do
+        case ${i##*.} in
+            jpg|png|jpeg) mediainfo --Output="Image;%Width%x%Height% : $i" "$i" ;;
+            *) mediainfo --Output="Video;%Width%x%Height% : $i" "$i" ;;
+        esac
+    done | sed '/^\s*$/d'
+}
+function lyrics() {
+    while :;do
+        clyrics -p -k -s 20
+        sleep 5
+    done
 }
