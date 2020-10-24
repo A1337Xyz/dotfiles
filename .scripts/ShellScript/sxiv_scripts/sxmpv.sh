@@ -9,7 +9,7 @@ find . -maxdepth 1 -iregex '.*\(mp4\|mkv\|webm\|avi\)' -type f | while read -r i
     file_size=$(command du "$i")
     out="${cache_dir}/${i##*/}.jpg"
     if ! grep -qF "$file_size" "$cache";then
-        ffmpegthumbnailer -s 300 -i "$i" -q 10 -o "$out" 2>/dev/null
+        ffmpegthumbnailer -f -s 300 -i "$i" -q 10 -o "$out" 2>/dev/null
         echo "$file_size" >> "$cache"
     fi
     echo "$out"
