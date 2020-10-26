@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
-let g:netrw_dirhist_7='/home/anon/.scripts/Python/lewdua'
-let g:netrw_dirhist_6='/home/anon/.config'
-let g:netrw_dirhist_5='/home/anon/.config/nnn'
-let g:netrw_dirhist_4='/home/anon/.config/nnn/plugins'
-let g:netrw_dirhist_3='/home/anon/.scripts/ShellScript/musix'
-let g:netrw_dirhist_2='/home/anon/.config/qutebrowser/dracula'
-let g:netrw_dirhist_1='/home/anon/.scripts/Python'
