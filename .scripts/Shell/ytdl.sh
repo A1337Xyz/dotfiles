@@ -2,8 +2,8 @@
 
 [ -z "$1" ] && { notify-send 'ytdl.sh: nothing to do' ; exit 1 ; }
 
-cd ~/Downloads
-tmpfile=$(mktemp -p ~/Downloads)
+cd ~/downloads
+tmpfile=$(mktemp -p ~/downloads)
 echo "$1" >> "$tmpfile"
 notify-send "$0: $1"
 printf '\033]2;%s\007' "$@"

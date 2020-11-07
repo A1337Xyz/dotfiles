@@ -15,5 +15,5 @@ while [ -f "$lock" ];do sleep 5 ;done
 notify-send "$(date)" "$video"
 touch "$lock"
 trap 'rm -f $lock; exit 0' EXIT
-mpv --really-quiet --ytdl-format='[height<=720]' "$video"
+mpv --really-quiet --ytdl-format='[height<=1080]' "$video"
 

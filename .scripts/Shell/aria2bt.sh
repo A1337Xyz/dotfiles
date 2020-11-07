@@ -2,9 +2,9 @@
 set -e
 command -v aria2c &>/dev/null || { printf 'install aria2\n'; exit 1; }
 
-INCOMPLETE_TORRENTS="${HOME}/Downloads/.torrents"
-ERROR_DIR="${INCOMPLETE_TORRENTS}/error"
-COMPLETE_TORRENTS="${HOME}/Downloads"
+INCOMPLETE_TORRENTS="${XDG_DOWNLOAD_DIR}/.torrents"
+COMPLETE_TORRENTS="${XDG_DOWNLOAD_DIR}"
+ERROR_DIR="${INCOMPLETE_TORRENTS}/.error"
 TIMEOUT=$(( 10 * 60 ))
 
 [ -d "$INCOMPLETE_TORRENTS" ] || mkdir -v "$INCOMPLETE_TORRENTS"
