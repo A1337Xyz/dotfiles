@@ -5,14 +5,15 @@ esac
 
 val=$(awk '{print $1 / 1000}' /sys/devices/platform/coretemp.0/hwmon/hwmon?/temp3_input)
 
-if (( val < 42 ));then
-    color="#00C0FF"
-elif (( val >= 42 && val < 55 ));then
-    color="#80C0FF"
-else
-    color="#C0C0FF"
-fi
+#if (( val < 42 ));then
+#    color="#00C0FF"
+#elif (( val >= 42 && val < 55 ));then
+#    color="#80C0FF"
+#else
+#    color="#C0C0FF"
+#fi
 
-echo " TEMP <span foreground=\"$color\">$val°C</span> "
+#echo " TEMP <span foreground=\"$color\">$val°C</span> "
+echo " $val°C"
 [ "$val" -ge 70 ] && exit 33
 

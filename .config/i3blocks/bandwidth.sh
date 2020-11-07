@@ -79,21 +79,21 @@ tx_rate=$(( $tx_diff / $time_diff ))
 # 1024^2 = 1048576, then display MiB/s instead
 
 # incoming
-echo -n "<span foreground=\"#20FFA0\"> $INLABEL"
+echo -n "$INLABEL"
 rx_kib=$(( $rx_rate >> 10 ))
 if hash bc 2>/dev/null && [[ "$rx_rate" -gt 1048576 ]]; then
-  printf '%sM </span>' "`echo "scale=1; $rx_kib / 1024" | bc`"
+  printf '%sM' "`echo "scale=1; $rx_kib / 1024" | bc`"
 else
-  echo -n "${rx_kib}K</span>"
+  echo -n "${rx_kib}K"
 fi
 
 echo -n " "
 
 # outgoing
-echo -n "<span foreground=\"#FF20A0\"> $OUTLABEL"
+echo -n "$OUTLABEL"
 tx_kib=$(( $tx_rate >> 10 ))
 if hash bc 2>/dev/null && [[ "$tx_rate" -gt 1048576 ]]; then
-  printf '%sM </span>\n' "`echo "scale=1; $tx_kib / 1024" | bc`"
+  printf '%sM\n' "`echo "scale=1; $tx_kib / 1024" | bc`"
 else
-  echo "${tx_kib}K </span>"
+  echo "${tx_kib}K"
 fi

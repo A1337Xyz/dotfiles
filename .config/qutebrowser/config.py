@@ -7,8 +7,8 @@ c.url.searchengines = {
     '13': "https://1337x.to/search/{}/1/",
     'ad': "https://anidex.info/?q={}",
     'an': "https://www.anbient.com/search?search_api_views_fulltext={}",
+    'at': "https://animestorrent.com/?s={}",
     'aw': "https://wiki.archlinux.org/index.php?search={}",
-    'ccl': "https://culturacomlegenda.org/?s={}&submit=Pesquisar",
     'dic': "https://www.dicio.com.br/pesquisa.php?q={}",
     'git': "https://github.com/search?q={}",
     'go': "https://www.google.com/search?q={}",
@@ -16,8 +16,10 @@ c.url.searchengines = {
     'md': "https://magnetdl.eu/search/{}/",
     'mon': "https://monova.org/search?term={}",
     'mx': "https://yts.mx/browse-movies/{}",
+    'nh': "https://nhentai.net/search/?q={}",
     'ny': "https://nyaa.si/?q={}",
     'os': "https://www.opensubtitles.org/en/search/sublanguageid-pob/moviename-{}",
+    'ph': "https://www.pornhub.com/video/search?search={}",
     'pm': "https://yts.pm/browse-movies/{}",
     'rarbg': "https://rargb.to/search/?search={}",
     'su': "https://sukebei.nyaa.si/?q={}",
@@ -29,26 +31,29 @@ c.url.searchengines = {
     'ys': "https://www.yifysubtitles.com/search?q={}",
     'yt': "https://www.youtube.com/results?search_query={}",
     'zo': "https://zooqle.com/search?q={}",
+    'wh': 'https://wallhaven.cc/search?q={}',
 }
-#c.url.default_page = 'file:///home/anon/Pictures/wallpapers/homepage.html'
-#c.url.start_pages = ['file:///home/anon/Pictures/wallpapers/homepage.html']
+c.url.default_page = 'file:///home/anon/Pictures/wallpapers/homepage.html'
+c.url.start_pages = ['file:///home/anon/Pictures/wallpapers/homepage.html']
 c.content.notifications = False
 
 config.bind(';x', 'yank -q selection ;; spawn -d xdg-open {clipboard}')
 config.bind(';m', 'hint links spawn -d mpv --profile=web {hint-url}')
 config.bind(';s', 'hint links spawn -d sxivget.sh {hint-url}')
-config.bind(';d', 'hint links spawn -d urxvt -name download -e aria2c {hint-url}')
-config.bind(';a', "hint links spawn -d urxvt -name download -e anbient.py {hint-url}")
+config.bind(';d', 'hint links spawn -d urxvt -geometry 100x1 -name download -e aria2c {hint-url}')
+config.bind(';a', "hint links spawn -d urxvt -geometry 100x1 -name download -e anbient.py {hint-url}")
 config.bind('yd', "hint links spawn -d urxvt -name download -e ytdl.sh {hint-url}")
 config.bind('yD', "spawn -d urxvt -name download -e ytdl.sh {url}")
-config.bind('ax', "spawn -d urxvt -name download -e anbient.py {url}")
+config.bind('ax', "spawn -d urxvt -geometry 100x1 -name download -e anbient.py {url}")
+config.bind('cx', 'spawn -d urxvt -geometry 100x1 -name download -e 4chan.py {url}')
 config.bind('mp', 'spawn -d mpv --profile=web {url}')
 config.bind(';M', 'hint images download')
 config.bind('mu', 'spawn -d musix.sh {url}')
+config.bind('xr', 'spawn -u reddit')
 config.unbind('m')
 
 c.tabs.show = "always"
-c.statusbar.show = "in-mode"
+c.statusbar.show = "always"
 c.tabs.background = False
 c.tabs.indicator.width = 0
 c.content.autoplay = False

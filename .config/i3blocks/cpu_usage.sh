@@ -33,7 +33,8 @@ elif (( DIFF_USAGE >= 60 && DIFF_USAGE < 75 ));then
 else
     color="#C0C0FF"
 fi
-printf ' CPU <span foreground="%s">%2d%% </span>\n' "$color" "$DIFF_USAGE"
+#printf ' CPU <span foreground="%s">%2d%% </span>\n' "$color" "$DIFF_USAGE"
+printf '  %2d%%\n' "$DIFF_USAGE"
 
 # Remember the total and idle CPU times for the next check.
 [ -f "$cpu_info" ] && rm -f $cpu_info
