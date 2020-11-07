@@ -104,6 +104,7 @@ bindsym $mod+space focus mode_toggle
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+# 
 set $ws1 "1:I"
 set $ws2 "2:II"
 set $ws3 "3:III"
@@ -175,7 +176,7 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+y sticky toggle
 
-set $terminal urxvt
+set $terminal alacritty
 
 bindsym $mod+shift+b exec "i3-msg bar mode toggle"
 bindsym $mod+b exec "i3-msg border toggle"
@@ -188,54 +189,54 @@ bindsym $mod+minus scratchpad show
 
 #font pango:Perfect DOS VGA 437 Win 12
 #font pango:Source Code Pro 10
-#font pango:monospace 10
+#font pango:monospace 9
 font pango:Cascadia Code 9
+#font pango:Comic Relief 10
+#font pango:DejaVu Sans 10
 #font pango:Noto Sans 10
 #font pango:unscii 10
 #
 # https://thomashunter.name/i3-configurator/
 bar {
-    #font pango:Perfect DOS VGA 437 Win 11
-    #font pango:Source Code Pro 10
-    #font pango:unscii 9.7
-    #font pango:Noto Sans 9
-    font pango:Cascadia Code 9
-    #i3bar_command i3bar --transparency
+    i3bar_command i3bar --transparency
     status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
     strip_workspace_numbers yes
     binding_mode_indicator yes
     workspace_buttons yes
+    workspace_min_width 40
+    #tray_padding 1
+    tray_output none
     #separator_symbol "|"
-    separator_symbol "╱"
+    #separator_symbol "╱"
     #separator_symbol "〈〈"
     position top
     # mode invisible
     
     colors {
-        background #000000
-        statusline #CCCCCC
-        separator  #C080FF # before 809FBF
+        background #00000000
+        statusline #FFFFFF
+        separator  #666666
 
-        focused_workspace  #000000 #000000 #C080FF
-        active_workspace   #000000 #000000 #888888
-        inactive_workspace #000000 #000000 #888888
-        urgent_workspace   #FF8080 #FF8080 #FFFFFF
-        binding_mode       #FF8080 #FF8080 #FFFFFF
+        focused_workspace  #4C7899 #285577 #FFFFFF
+        active_workspace   #333333A0 #222222A0 #FFFFFF
+        inactive_workspace #333333A0 #222222A0 #888888
+        urgent_workspace   #2F343A #900000 #FFFFFF
+        binding_mode       #2F343A #900000 #FFFFFF
     }
 }
 
 # class                 border  bground text    indicator child_border
-client.focused          #000000 #000000 #C080FF #C080FF   #C080FF
-client.focused_inactive #000000 #000000 #5F5F5F #505050   #5F5F5F
-client.unfocused        #000000 #000000 #5F5F5F #505050   #5F5F5F
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-client.background       #F8F8F2
+client.focused          #4C7899 #285577 #FFFFFF #2E9EF4   #285577
+client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
+client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+client.background       #FFFFFF
 
 # https://i3wm.org/docs/layout-saving.html
 workspace_layout tabbed # default|stacking|tabbed
 title_align center
-hide_edge_borders smart
+#hide_edge_borders smart
 floating_maximum_size 1280 x 720
 default_border pixel 3
 default_floating_border pixel 3
@@ -293,23 +294,24 @@ assign [class="qutebrowser"] $ws2
 assign [class="Brave-browser"] $ws2
 assign [class="Google-chrome"] $ws2
 assign [class="Tor Browser"] $ws2
+assign [instance="newsboat"] $ws2
 assign [class="TelegramDesktop"] $ws3
 assign [class="discord"] $ws3
 assign [class="Steam"] $ws4
 assign [class="Spotify"] $ws9
-assign [class="Glava"] $ws9
-assign [instance="newsboat"] $ws2
 assign [instance="ncmpcpp"] $ws9
 assign [instance="ncspot"] $ws9
 assign [instance="clyrics"] $ws9
 assign [instance="Spotify"] $ws9
 assign [instance="download"] $ws10
 
+#exec --no-startup-id xfce4-panel --disable-wm-check
 #exec --no-startup-id picom
-#exec --no-startup-id xcompmgr -n
+exec --no-startup-id xcompmgr -n
 exec --no-startup-id sxhkd
 exec --no-startup-id qutebrowser
+exec --no-startup-id alacritty -d 100 20 --class ncspot -t ncspot -e ncspot
 exec_always --no-startup-id $XDG_CACHE_HOME/xwallpaper
-exec --no-startup-id $terminal -geometry 80x20+20+50 -name ncspot -title ncspot -e ncspot
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec --no-startup-id discord
 #exec --no-startup-id $terminal -name newsboat -title newsboat -e newsboat
