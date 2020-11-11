@@ -105,16 +105,28 @@ bindsym $mod+space focus mode_toggle
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 # 
-set $ws1 "1:I"
-set $ws2 "2:II"
-set $ws3 "3:III"
-set $ws4 "4:IV"
-set $ws5 "5:V"
-set $ws6 "6:VI"
-set $ws7 "7:VII"
-set $ws8 "8:VIII"
-set $ws9 "9:IX"
-set $ws10 "10:X"
+#set $ws1 "1:一"
+#set $ws2 "2:二"
+#set $ws3 "3:三"
+#set $ws4 "4:四"
+#set $ws5 "5:五"
+#set $ws6 "6:六"
+#set $ws7 "7:七"
+#set $ws8 "8:八"
+#set $ws9 "9:九"
+#set $ws10 "10:十"
+
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
+
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -190,14 +202,15 @@ bindsym $mod+minus scratchpad show
 #font pango:Perfect DOS VGA 437 Win 12
 #font pango:Source Code Pro 10
 #font pango:monospace 9
-font pango:Cascadia Code 9
 #font pango:Comic Relief 10
 #font pango:DejaVu Sans 10
 #font pango:Noto Sans 10
 #font pango:unscii 10
+font pango:Cascadia Code 10
 #
 # https://thomashunter.name/i3-configurator/
 bar {
+    font pango:Cascadia Code 10
     i3bar_command i3bar --transparency
     status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
     strip_workspace_numbers yes
@@ -213,20 +226,20 @@ bar {
     # mode invisible
     
     colors {
-        background #00000000
+        background #00000F00
         statusline #FFFFFF
         separator  #666666
 
-        focused_workspace  #4C7899 #285577 #FFFFFF
-        active_workspace   #333333A0 #222222A0 #FFFFFF
-        inactive_workspace #333333A0 #222222A0 #888888
-        urgent_workspace   #2F343A #900000 #FFFFFF
-        binding_mode       #2F343A #900000 #FFFFFF
+        focused_workspace  #5030F0 #8050FF #FFFFFF
+        active_workspace   #333333 #22222280 #FFFFFF
+        inactive_workspace #333333 #22222280 #CCCCCC
+        urgent_workspace   #F03050 #FF5080 #FFFFFF
+        binding_mode       #9000C0 #9000F0 #FFFFFF
     }
 }
 
 # class                 border  bground text    indicator child_border
-client.focused          #4C7899 #285577 #FFFFFF #2E9EF4   #285577
+client.focused          #5030F0 #8050FF #FFFFFF #2E9EF4   #285577
 client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
 client.unfocused        #333333 #222222 #888888 #292D2E   #222222
 client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
@@ -298,6 +311,8 @@ assign [instance="newsboat"] $ws2
 assign [class="TelegramDesktop"] $ws3
 assign [class="discord"] $ws3
 assign [class="Steam"] $ws4
+assign [class="dota2"] $ws4
+assign [class="hl2_linux"] $ws4
 assign [class="Spotify"] $ws9
 assign [instance="ncmpcpp"] $ws9
 assign [instance="ncspot"] $ws9

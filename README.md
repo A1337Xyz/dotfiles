@@ -1,1 +1,3 @@
 # dotfiles
+
+![current](current.jpg)
