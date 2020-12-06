@@ -3,11 +3,12 @@ env:
 
 window:
   dimensions:
-    columns: 100
+    columns: 90
     lines: 24
   padding:
-    x: 5
-    y: 5
+    x: 9
+    y: 9
+  dynamic_padding: true
   decorations: full
   startup_mode: Windowed
   title: Alacritty
@@ -21,21 +22,47 @@ scrolling:
 
 font:
   normal:
-    family: CascadiaCode
+    family: Perfect DOS VGA 437 Win
     style: Regular
   bold:
-    family: CascadiaCode
+    family: Perfect DOS VGA 437 Win
     style: Bold
   italic:
-    family: CascadiaCode
+    family: Perfect DOS VGA 437 Win
     style: Italic
   bold_italic:
-    family: CascadiaCode
+    family: Perfect DOS VGA 437 Win
     style: Bold Italic
-  size: 10.0
+  size: 11.0
 
-background_opacity: 0.82
+background_opacity: 0.78
 
 colors:
   primary:
-    background: '#3f005f'
+    background: '#000000'
+    foreground: '#ffffff'
+
+  cursor:
+    text: "#000000"
+    cursor: "#00ff00"
+
+  normal:
+    black:    "#000000"
+    red:      "#ff003f"
+    green:    "#9fff30"
+    yellow:   "#ffff00"
+    blue:     "#9f30ff"
+    magenta:  "#ff00ff"
+    cyan:     "#30ffff"
+    white:    "#ffffff"
+
+cursor:
+  style: Underline
+
+  thickness: 0.18
+
+mouse:
+  hide_when_typing: true
+  url:
+    launcher:
+      program: firefox

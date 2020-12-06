@@ -104,7 +104,18 @@ bindsym $mod+space focus mode_toggle
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-# 
+ 
+#set $ws1 "1:🯱"
+#set $ws2 "2:🯲"
+#set $ws3 "3:🯳"
+#set $ws4 "4:🯴"
+#set $ws5 "5:🯵"
+#set $ws6 "6:🯶"
+#set $ws7 "7:🯷"
+#set $ws8 "8:🯸"
+#set $ws9 "9:🯹"
+#set $ws10 "10:🯰"
+
 #set $ws1 "1:一"
 #set $ws2 "2:二"
 #set $ws3 "3:三"
@@ -116,17 +127,38 @@ bindsym $mod+space focus mode_toggle
 #set $ws9 "9:九"
 #set $ws10 "10:十"
 
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
+#set $ws1 "1:"
+#set $ws2 "2:"
+#set $ws3 "3:"
+#set $ws4 "4:"
+#set $ws5 "5:"
+#set $ws6 "6:"
+#set $ws7 "7:"
+#set $ws8 "8:"
+#set $ws9 "9:"
+#set $ws10 "10:"
 
+#set $ws1 "1:I"
+#set $ws2 "2:II"
+#set $ws3 "3:III"
+#set $ws4 "4:IV"
+#set $ws5 "5:V"
+#set $ws6 "6:VI"
+#set $ws7 "7:VII"
+#set $ws8 "8:VIII"
+#set $ws9 "9:IX"
+#set $ws10 "10:X"
+
+set $ws1 "1:1"
+set $ws2 "2:2"
+set $ws3 "3:3"
+set $ws4 "4:4"
+set $ws5 "5:5"
+set $ws6 "6:6"
+set $ws7 "7:7"
+set $ws8 "8:8"
+set $ws9 "9:9"
+set $ws10 "10:0"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -199,18 +231,17 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
-#font pango:Perfect DOS VGA 437 Win 12
+#font pango:Perfect DOS VGA 437 Win 10
 #font pango:Source Code Pro 10
-#font pango:monospace 9
+font pango:monospace 9
 #font pango:Comic Relief 10
 #font pango:DejaVu Sans 10
 #font pango:Noto Sans 10
 #font pango:unscii 10
-font pango:Cascadia Code 10
-#
+#font pango:Cascadia Code 9
+
 # https://thomashunter.name/i3-configurator/
 bar {
-    font pango:Cascadia Code 10
     i3bar_command i3bar --transparency
     status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
     strip_workspace_numbers yes
@@ -218,30 +249,32 @@ bar {
     workspace_buttons yes
     workspace_min_width 40
     #tray_padding 1
-    tray_output none
-    #separator_symbol "|"
+    #tray_output none
     #separator_symbol "╱"
+    #separator_symbol "│"
+    #separator_symbol "┆"
     #separator_symbol "〈〈"
     position top
-    # mode invisible
+    mode dock # dock,hide
     
     colors {
-        background #00000F00
-        statusline #FFFFFF
-        separator  #666666
+        background #cccccc
+        statusline #000000
+        separator  #888888
 
-        focused_workspace  #5030F0 #8050FF #FFFFFF
-        active_workspace   #333333 #22222280 #FFFFFF
-        inactive_workspace #333333 #22222280 #CCCCCC
-        urgent_workspace   #F03050 #FF5080 #FFFFFF
-        binding_mode       #9000C0 #9000F0 #FFFFFF
+        focused_workspace  #888888 #aaaaaa #000000
+        active_workspace   #cccccc #cccccc #888880
+        inactive_workspace #cccccc #cccccc #888888
+        urgent_workspace   #cf3080 #FF3080 #FFFFFF
+        binding_mode       #333333 #555555 #ffffff
     }
 }
 
+
 # class                 border  bground text    indicator child_border
-client.focused          #5030F0 #8050FF #FFFFFF #2E9EF4   #285577
-client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
-client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+client.focused          #888888 #cccccc #000000 #cccccc   #cccccc
+client.focused_inactive #888888 #aaaaaa #000008 #888888   #888888
+client.unfocused        #888888 #aaaaaa #000008 #888888   #888888
 client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 client.background       #FFFFFF
@@ -249,12 +282,12 @@ client.background       #FFFFFF
 # https://i3wm.org/docs/layout-saving.html
 workspace_layout tabbed # default|stacking|tabbed
 title_align center
-#hide_edge_borders smart
-floating_maximum_size 1280 x 720
-default_border pixel 3
-default_floating_border pixel 3
+hide_edge_borders smart
+floating_maximum_size 1280 x 800
+default_border pixel 2
+default_floating_border pixel 2
 
-#for_window [class=".*"] border pixel 3
+#for_window [class=".*"] border pixel 2
 for_window [window_type="pop-up"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_role="pop-up"] floating enable
@@ -289,6 +322,7 @@ for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="Wrapper-2.0"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Lxappearance"] floating enable
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 #for_window [class="Spotify"] floating enable 
 for_window [class="GParted"] floating enable 
 for_window [instance="branchdialog"] floating enable  # gitk
@@ -296,7 +330,6 @@ for_window [instance="pinentry"] floating enable  # GPG key password entry
 for_window [instance="clock"] floating enable
 for_window [instance="ncmpcpp"] floating enable
 for_window [instance="floating_terminal"] floating enable
-for_window [instance="ncspot"] floating enable
 for_window [instance="download"] layout stacking
 for_window [instance="Event Tester"] floating enable
 for_window [title="abcfec02fc5f020bd7f54669964ffac9"] floating enable
@@ -321,12 +354,15 @@ assign [instance="Spotify"] $ws9
 assign [instance="download"] $ws10
 
 #exec --no-startup-id xfce4-panel --disable-wm-check
-#exec --no-startup-id picom
-exec --no-startup-id xcompmgr -n
+exec --no-startup-id alacritty
+exec --no-startup-id playing_now.sh
+exec --no-startup-id xcompmgr -n -f -I 0.082 -O 0.082
 exec --no-startup-id sxhkd
 exec --no-startup-id qutebrowser
-exec --no-startup-id alacritty -d 100 20 --class ncspot -t ncspot -e ncspot
+exec --no-startup-id alacritty --class ncspot -t ncspot -e ncspot
+exec --no-startup-id connect_server.sh
 exec_always --no-startup-id $XDG_CACHE_HOME/xwallpaper
+exec_always xrdb load $XDG_CONFIG_HOME/X11/Xresources
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec --no-startup-id discord
 #exec --no-startup-id $terminal -name newsboat -title newsboat -e newsboat

@@ -1,0 +1,103 @@
+!!! printf '\e]710;%s\007' "xft:monospace:pixelsize=11"
+URxvt.geometry: 100x24
+!URxvt.iconFile: /usr/share/icons/
+URxvt.iconName: terminal
+URxvt.font: xft:Perfect DOS VGA 437 Win:pixelsize=13
+URxvt.boldFont: xft:Perfect DOS VGA 437 Win:pixelsize=13
+!URxvt.font: xft:Source Code Pro:pixelsize=11
+!URxvt.font: xft:Cascadia Code:pixelsize=12
+!URxvt.font: xft:unscii:style=16-full:pixelsize=16
+URxvv.italicFont: false
+URxvt.internalBorder: 8
+URxvt.letterSpace: 0
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.scrollBar: false
+URxvt.pointerBlank: true
+URxvt.pointerBlankDelay: 987654321
+URxvt.depth: 32
+URxvt.fading: 0
+URxvt.scrollBar_right: true
+URxvt.mouseWheelScrollPage:false
+URxvt.saveLines: 5000
+! for 'fake' transparency uncomment the following three lines
+!URxvt.inheritPixmap: true
+!URxvt.transparent: true
+!URxvt.shading: 30
+
+Xft.dpi:       96
+Xft.antialias: true
+Xft.hinting:   true
+Xft.rgba:      rgb
+Xft.autohint:  false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+! Xcursor.theme: xcursor-breeze
+Xcursor.size: 0
+
+!perl
+URxvt.perl-ext-common:          default,url-select,matcher,resize-font
+URxvt.url-launcher:             /usr/bin/qutebrowser
+URxvt.matcher.pattern.1:        \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.matcher.button: 1
+URxvt.iso14755_52: false
+
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-plus:      resize-font:bigger
+URxvt.keysym.C-equal:     resize-font:reset
+URxvt.keysym.C-question:  resize-font:show
+
+URxvt.resize-font.step: 2
+
+!Disables the insanely annoying Ctrl+Shift shortcut that enters ISO14755 mode
+URxvt.iso14755 : false
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+Sxiv.foreground: #cccccc
+Sxiv.background: #000000
+
+!dmenu.font: Cascadia Code-10
+dmenu.font: Perfect DOS VGA 437 Win-12
+dmenu.background: #cccccc
+dmenu.foreground: #000000
+dmenu.selbackground: #aaaaaa
+dmenu.selforeground: #000000
+
+URxvt.foreground:  #E0E0FF
+URxvt.background:  [82]#000000
+URxvt.cursorColor: #E0E0FF
+URxvt.colorUL:  #B0FFB0
+
+! Black
+*.color0:      #222222
+*.color8:      #505050
+
+! Red
+*.color1:      #FFA0A0
+*.color9:      #FFA0A0
+
+! Green
+*.color2:      #A0FFA0
+*.color10:     #A0FFA0
+
+! Yellow
+*.color3:      #FFFFA0
+*.color11:     #FFFFA0
+
+! Blue
+*.color4:      #A0A0FF
+*.color12:     #A0A0FF
+
+! Magenta
+*.color5:      #FFA0FF
+*.color13:     #FFA0FF
+
+! Cyan
+*.color6:      #A0FFFF
+*.color14:     #A0FFFF
+
+! White
+*.color7:      #FFFFFF
+*.color15:     #FFFFFF
