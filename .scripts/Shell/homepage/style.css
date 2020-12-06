@@ -1,0 +1,52 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: #222;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #222;
+}
+#filename {
+    font-family: "Perfect DOS VGA 437 Win", monospaced;
+    font-size: 12pt;
+    background: #000000c0;
+    position: absolute;
+    padding: 5px 20px;
+    right: 0;
+    bottom: 0;
+    color: #5e8;
+    box-shadow: 2px 2px 4px #000;
+}
+#clock {
+    font-family: "Perfect DOS VGA 437 Win", monospaced;
+    color: #ff3fff;
+    font-weight: bold;
+    font-size: 80px;
+    text-align: center;
+    text-shadow: 6px 6px 0px #9f3f9f;
+    padding: 25px;
+    
+    /* name duration timing-function delay iteration-count direction */
+    /* animation: colors 10s linear 5s infinite normal; */
+}
+
+#search {
+    background: #ffffff;
+    color: #000;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);/* */
+    padding: 8px;
+    width: 70%;
+    margin: 12px auto;
+    border: 2px solid #333;
+}
+input {
+    font-size: 12pt;
+    outline: none;
+    border: none;
+    text-align: center;
+    width: 100%;
+}
