@@ -1,25 +1,26 @@
-notify = true
+notify = false
 volnorm = true
 volnorm_pregain = -3
 
 [saved_state]
-volume = 82
+volume = 100
 repeat = "playlist"
-shuffle = false
+shuffle = true
 
-[theme]
-primary = "white"
-secondary = "#B080FF"
-title = "green"
-playing = "green"
-playing_selected = "black"
-#playing_bg = "#b0b0ff"
-highlight = "black"
-highlight_bg = "#B080FF"
-error = "white"
-error_bg = "red"
-statusbar = "black"
-statusbar_progress = "green"
-statusbar_bg = "#B080FF"
-cmdline = "green"
-cmdline_bg = "black"
+[keybindings]
+"Shift+r" = "reload"
+
+# MC THEME
+#[theme]
+#background = "#0000ff"
+#primary = "#ffffff"
+#secondary = "#ffffff"
+#title = "#ffff00"
+#playing = "#ffff00"
+#playing_bg = "#0000ff"
+#playing_selected = "#000000"
+#highlight = "#000000"
+#highlight_bg = "#00ffff"
+#statusbar = "#000000"
+#statusbar_bg = "#ffffff"
+#statusbar_progress = "#ffffff"

@@ -6,8 +6,8 @@ window:
     columns: 90
     lines: 24
   padding:
-    x: 9
-    y: 9
+    x: 1
+    y: 1
   dynamic_padding: true
   decorations: full
   startup_mode: Windowed
@@ -27,34 +27,38 @@ font:
   bold:
     family: Perfect DOS VGA 437 Win
     style: Bold
-  italic:
-    family: Perfect DOS VGA 437 Win
-    style: Italic
-  bold_italic:
-    family: Perfect DOS VGA 437 Win
-    style: Bold Italic
   size: 11.0
 
-background_opacity: 0.72
+background_opacity: 0.99
 
 colors:
   primary:
-    background: '#20003f'
-    foreground: '#ffffff'
+    background: '0x282828'
+    foreground: '0xdfbf9f'
 
   cursor:
-    text: "#80009f"
+    text: "#000000"
     cursor: "#ffffff"
 
   normal:
-    black:    "#222222"
-    red:      "#ff5f5f"
-    green:    "#9fff00"
-    yellow:   "#ffff3f"
-    blue:     "#9f3fff"
-    magenta:  "#ff009f"
-    cyan:     "#00cfcf"
-    white:    "#ffffff"
+    black:    "0x665c54"
+    red:      "0xea6962"
+    green:    "0xa9b665"
+    yellow:   "0xe78a4e"
+    blue:     "0x7daea3"
+    magenta:  "0xd3869b"
+    cyan:     "0x89b482"
+    white:    "0xdfbf8e"
+
+  bright:
+    black:    "0x928374"
+    red:      "0xea6962"
+    green:    "0xa9b665"
+    yellow:   "0xe3a84e"
+    blue:     "0x7daea3"
+    magenta:  "0xd3869b"
+    cyan:     "0x89b482"
+    white:    "0xdfbf8e"
 
 cursor:
   style: Block
@@ -65,4 +69,4 @@ mouse:
   hide_when_typing: true
   url:
     launcher:
-      program: firefox
+      program: qutebrowser

@@ -105,16 +105,16 @@ bindsym $mod+space focus mode_toggle
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
  
-#set $ws1 "1:🯱"
-#set $ws2 "2:🯲"
-#set $ws3 "3:🯳"
-#set $ws4 "4:🯴"
-#set $ws5 "5:🯵"
-#set $ws6 "6:🯶"
-#set $ws7 "7:🯷"
-#set $ws8 "8:🯸"
-#set $ws9 "9:🯹"
-#set $ws10 "10:🯰"
+#set $ws1 "1:🯰🯱"
+#set $ws2 "2:🯰🯲"
+#set $ws3 "3:🯰🯳"
+#set $ws4 "4:🯰🯴"
+#set $ws5 "5:🯰🯵"
+#set $ws6 "6:🯰🯶"
+#set $ws7 "7:🯰🯷"
+#set $ws8 "8:🯰🯸"
+#set $ws9 "9:🯰🯹"
+#set $ws10 "10:🯱🯰"
 
 #set $ws1 "1:一"
 #set $ws2 "2:二"
@@ -138,27 +138,27 @@ bindsym $mod+space focus mode_toggle
 #set $ws9 "9:"
 #set $ws10 "10:"
 
-#set $ws1 "1:I"
-#set $ws2 "2:II"
-#set $ws3 "3:III"
-#set $ws4 "4:IV"
-#set $ws5 "5:V"
-#set $ws6 "6:VI"
-#set $ws7 "7:VII"
-#set $ws8 "8:VIII"
-#set $ws9 "9:IX"
-#set $ws10 "10:X"
+set $ws1 "1:I"
+set $ws2 "2:II"
+set $ws3 "3:III"
+set $ws4 "4:IV"
+set $ws5 "5:V"
+set $ws6 "6:VI"
+set $ws7 "7:VII"
+set $ws8 "8:VIII"
+set $ws9 "9:IX"
+set $ws10 "10:X"
 
-set $ws1 "1:1"
-set $ws2 "2:2"
-set $ws3 "3:3"
-set $ws4 "4:4"
-set $ws5 "5:5"
-set $ws6 "6:6"
-set $ws7 "7:7"
-set $ws8 "8:8"
-set $ws9 "9:9"
-set $ws10 "10:0"
+#set $ws1 "1:1"
+#set $ws2 "2:2"
+#set $ws3 "3:3"
+#set $ws4 "4:4"
+#set $ws5 "5:5"
+#set $ws6 "6:6"
+#set $ws7 "7:7"
+#set $ws8 "8:8"
+#set $ws9 "9:9"
+#set $ws10 "10:0"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -232,8 +232,8 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 #font pango:Perfect DOS VGA 437 Win 10
-#font pango:Source Code Pro 10
-font pango:monospace 9
+font pango:Source Code Pro 10
+#font pango:monospace 10
 #font pango:Comic Relief 10
 #font pango:DejaVu Sans 10
 #font pango:Noto Sans 10
@@ -249,7 +249,7 @@ bar {
     workspace_buttons yes
     workspace_min_width 40
     #tray_padding 1
-    #tray_output none
+    tray_output none
     #separator_symbol "╱"
     #separator_symbol "│"
     #separator_symbol "┆"
@@ -262,8 +262,8 @@ bar {
         statusline #000000
         separator  #888888
 
-        focused_workspace  #888888 #aaaaaa #000000
-        active_workspace   #cccccc #cccccc #888880
+        focused_workspace  #cccccc #cccccc #000000
+        active_workspace   #cccccc #cccccc #808080
         inactive_workspace #cccccc #cccccc #888888
         urgent_workspace   #cf3080 #FF3080 #FFFFFF
         binding_mode       #333333 #555555 #ffffff
@@ -354,13 +354,12 @@ assign [instance="Spotify"] $ws9
 assign [instance="download"] $ws10
 
 #exec --no-startup-id xfce4-panel --disable-wm-check
-exec --no-startup-id alacritty
+exec --no-startup-id alacritty -e tmux
 exec --no-startup-id playing_now.sh
-exec --no-startup-id xcompmgr -n -f -I 0.082 -O 0.082
+exec --no-startup-id xcompmgr -n # -f -I 0.082 -O 0.082
 exec --no-startup-id sxhkd
 exec --no-startup-id qutebrowser
 exec --no-startup-id alacritty --class ncspot -t ncspot -e ncspot
-exec --no-startup-id connect_server.sh
 exec_always --no-startup-id $XDG_CACHE_HOME/xwallpaper
 exec_always xrdb load $XDG_CONFIG_HOME/X11/Xresources
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh

@@ -10,5 +10,6 @@ case "${1##*.}" in
     torrent) aria2c -S "$1"  ;;
     odt|ods|odp|sxw) odt2txt "$1" ;;
     htm|html|xhtml) w3m -dump "$1" ;;
+    md) glow "$1" ;;
     *) highlight "$1" -O ansi --force ;;
 esac

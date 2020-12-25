@@ -1,8 +1,39 @@
-super + n
-    alacritty -e lf
+super + Return
+    alacritty -e tmux
+
+super + c
+    alacritty vim $(find ~/.local/bin -regex '.*\.\(py\|sh\)$' | dmenu -c -l 10)
+
+super + shift + Return
+    alacritty --class floating_terminal -e tmux
+
+super + u
+    alacritty --class floating_terminal -e pulsemixer
+
+super + x
+    xwall.sh --dmenu
+
+super + shift + x
+    xwall.sh --sxiv
+
+super + z
+    twitch.sh
+
+super + F5
+    chscreen.sh
 
 super + Escape
     pkill -USR1 -x sxhkd
+
+#super + t
+#    killall -SIGUSR1 tint2
+
+super + d
+    dmenu_run -c -l 5
+
+###############
+## Essencial ##
+###############
 
 XF86AudioRaiseVolume
     pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGRTMIN+10 i3blocks
@@ -17,10 +48,10 @@ XF86AudioMute
 #amixer -q sset Master toggle # && pkill -SIGRTMIN+10 i3blocks
 
 XF86MonBrightnessDown
-    xbacklight -dec 5
+    xbacklight -dec 2
 
 XF86MonBrightnessUp
-    xbacklight -inc 5
+    xbacklight -inc 2
 
 XF86AudioPlay
     playercontrol.sh toggle
@@ -29,22 +60,19 @@ XF86AudioPlay
     playercontrol.sh {prev,next}
 
 Print
-    scrot -q 100 -m "$HOME/Pictures/screenshots/screenshot_%H%M%S_%d%m%Y.png" -e 'notify-send $f'
+    print.sh
 
 super + Print
-    scrot -q 100 -u "$HOME/Pictures/screenshots/screenshot_%H%M%S_%d%m%Y.png" -e 'notify-send $f'
+    print.sh focused
 
 super + shift + s
-    sleep 1 ; scrot -q 100 -s "$HOME/Pictures/screenshots/screenshot_%H%M%S_%d%m%Y.png" -e 'notify-send $f'
+    print.sh select
 
 ctrl + Print
-    scrot -q 100 "/tmp/screenshot_%H%M%S_%d%m%Y.png" \
-          -e 'xclip -sel clip -t image/png -i $f; notify-send $f'
+    print.sh copy
 
 ctrl + shift + Print
-    scrot -q 100 -u "/tmp/screenshot_%H%M%S_%d%m%Y.png" \
-          -e 'xclip -sel clip -t image/png -i $f; notify-send $f'
+    print.sh copy-focused
 
-super + ctrl + Print
-    sleep .5 ; scrot -q 100 -s "/tmp/screenshot_%H%M%S_%d%m%Y.png"  \
-          -e 'xclip -sel clip -t image/png -i $f; notify-send $f'
+ctrl + shift + s
+    print.sh copy-select

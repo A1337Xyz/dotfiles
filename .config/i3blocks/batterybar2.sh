@@ -13,7 +13,7 @@ while :;do
             sleep 1.2
             continue
         ;;
-        "Full") echo "$capacity% ${bar[3]}" ;;
+        "Full") echo "$capacity% ${bar[3]}" ; notify-send "$(acpi)" ;;
         "Discharging"|"Unknown")
             if (( capacity >= 0 && capacity < 20 )); then
                 echo "$capacity% ${bar[0]}"
