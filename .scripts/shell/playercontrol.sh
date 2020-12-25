@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 [ -z "$1" ] && { printf 'nothing to do\n'; exit 1; }
-players=($(playerctl -l 2>/dev/null | grep -v "\(qutebrowser\|firefox\)"))
+players=($(playerctl -l 2>/dev/null | grep '\(ncspot\|spotify\)'))
 if [ ${#players[@]} -gt 0 ];then
     if [ ${#players[@]} -eq 1 ];then
         player=${players[0]}

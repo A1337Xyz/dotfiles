@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
-lock=/tmp/cGxheWluZ19ub3cuc2gK.lock
-[ -f "$lock" ] && exit 1
-touch "$lock"
-end() { rm -f "$lock" ; exit 0 ; }
-trap end EXIT SIGINT SIGTERM
+[ $(pgrep -fc 'bash.*playing_now.sh') -gt 1 ] && exit 1
 [ -d ~/.cache/albums ] || mkdir ~/.cache/albums
 curr_song=
 while :;do
-    players=($(playerctl -l | grep -v chromium))
+    players=($(playerctl -l | grep '\(ncspot\|spotify\)'))
     for player in "${players[@]}";do
         [ $(playerctl -p $player status) = Playing ] && break
     done
@@ -28,11 +24,6 @@ while :;do
         fi
     fi
     icon=~/.cache/albums/"${song[3]##*/}"
-    if [ $1 = text ];then
-        echo "Playing Now ♪ ${song[0]} ${song[1]} ${song[2]}"
-        break
-    else
-        notify-send -i "$icon" -t 7000 "Playing Now ♪" "Artist: ${song[0]}\nTitle: ${song[1]}\nDuration: ${song[2]}"
-        sleep 60
-    fi
+    notify-send -i "$icon" -t 7000 "Playing Now ♪" "${song[0]}\n${song[1]}" #\nDuration ${song[2]}"
+    sleep 30
 done

@@ -1,9 +1,14 @@
+
 function search(opt, query_term) {
     let engine = {
         default: "https://duckduckgo.com/?q=" + query_term,
         go: "https://www.google.com/search?q=" + query_term,
+        ad: "https://anidex.info/?q=" + query_term,
         13: "https://1337x.to/search/" + query_term + "/1/",
+        an: "https://www.anbient.com/search?search_api_views_fulltext=" + query_term,
+        at: "https://animestorrent.com/?s=" + query_term,
         aw: "https://wiki.archlinux.org/index.php?search=" + query_term,
+        dic: "https://www.dicio.com.br/pesquisa.php?q=" + query_term,
         git: "https://github.com/search?q=" + query_term,
         imdb: "https://www.imdb.com/find?q=" + query_term,
         md: "https://magnetdl.eu/search/" + search + "/",
@@ -23,6 +28,7 @@ function search(opt, query_term) {
         wk: "https://pt.wikipedia.org/wiki/" + query_term,
         ys: "https://www.yifysubtitles.com/search?q=" + query_term,
         yt: "https://www.youtube.com/results?search_query=" + query_term,
+        xv: "https://www.xvideos.com/?k=" + query_term,
         zo: "https://zooqle.com/search?q=" + query_term,
         wh: "https://wallhaven.cc/search?q=" + query_term,
     }

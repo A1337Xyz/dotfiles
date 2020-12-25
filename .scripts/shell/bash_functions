@@ -1,5 +1,6 @@
 #!/bin/bash
 function fox() { command firefox "$@" &>/dev/null & disown ; }
+function vlc() { command vlc "$@" &>/dev/null & disown ; }
 function zathura() { command zathura "$@" &>/dev/null & disown ; }
 function xreader() { command xreader "$@" &>/dev/null & disown ; }
 function lb() { awk '!/^#/' "$XDG_CONFIG_HOME"/sxhkd/sxhkdrc | less; }
@@ -10,8 +11,10 @@ function d() { du -had1 "${1-.}" 2>/dev/null | sort -h; }
 function line() { sed "${1}!d" "$2"; }
 function bcat() { aria2c -S "$1" | less; }
 function wallpaper() { awk -F'"' '{print $2}' ~/.cache/xwallpaper 2>/dev/null; }
-function freq() { awk -F':' '/cpu MHz/{printf("%.0f MHz ", $2)} END {printf "\n"}' /proc/cpuinfo; }
 function getkeys() { xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'; }
+function png2jpg() { for i in *.png;do [ -f "$i" ] && convert "$i" "${i%.*}.jpg" && rm -vf "$i"; done; }
+function fonts() { fc-list | cut -d':' -f2 | sort | uniq -u | fzf | xclip; }
+function lyrics() { while :;do clyrics -p -k -s 20 ; sleep 5 ;done; }
 function ex() {
     [ -f "$1" ] || return 1
     case "$1" in
@@ -78,9 +81,11 @@ function sp() {
     command ncspot && clear
 }
 function ren5sum() {
-    if [ -f "$1" ];then
-        mv -vi "$1" "$(md5sum "$1" | awk '{print $1}').${1##*.}"
-    fi
+    for i in "$@";do
+        if [ -f "$i" ];then
+            mv -vi "$i" "$(md5sum "$i" | awk '{print $1}').${i##*.}"
+        fi
+    done
 }
 function mntdroid() {
     [ -z "$1" ] && { printf 'Usage: %s IP\n' "$0" ; return 1; }
@@ -108,9 +113,9 @@ function lsres() {
         esac
     done | sed '/^\s*$/d'
 }
-function lyrics() {
+function freq() {
     while :;do
-        clyrics -p -k -s 20
-        sleep 5
+        awk -F':' '/cpu MHz/{printf("%.0f MHz ", $2)} END {printf "\n"}' /proc/cpuinfo;
+        sleep "${1:-2}" || break
     done
 }

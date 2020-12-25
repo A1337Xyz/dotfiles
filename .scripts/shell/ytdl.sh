@@ -2,12 +2,12 @@
 
 [ -z "$1" ] && { notify-send 'ytdl.sh: nothing to do' ; exit 1 ; }
 
-cd ~/downloads
-tmpfile=$(mktemp -p ~/downloads)
+cd ~/Downloads
+tmpfile=$(mktemp)
 echo "$1" >> "$tmpfile"
 notify-send "$0: $1"
 printf '\033]2;%s\007' "$@"
-if youtube-dl -o '%(title)s.%(ext)s' --add-metadata "$1";then
+if youtube-dl -i -o '%(title)s.%(ext)s' "$1";then
     notify-send "$0 - Download done" "$1"
     rm -f "$tmpfile"
     exit 0

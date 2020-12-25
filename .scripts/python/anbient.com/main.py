@@ -5,10 +5,8 @@ assert len(argv) > 1, 'Usage: {} <anbient-anime-url>'.format(argv[0])
 from time import sleep
 import os
 lock = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lock')
-while os.path.exists(lock):
-    print("\rPlease wait...", end='')
-    sleep(15)
-print()
+if os.path.exists(lock):
+    input('{} already running.\nPress ENTER to continue'.format(argv[0]))
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
@@ -17,7 +15,6 @@ import subprocess as sp
 url = argv[1]
 save = os.path.join("/home/{}/Downloads".format(os.getlogin()),
     url.split('/')[-1].replace('-', '_'))
-stdout.write("\x1b]2; {} \x07".format(save))
 
 opts = webdriver.FirefoxOptions()
 #opts.add_argument('-headless')
@@ -52,6 +49,7 @@ try:
                     print('Error: \033[1;31m{}\033[m'.format(err))
                     c += 1
             print('[{:2}/{:2}] {}'.format(i, len(urls), url))
+            stdout.write("\x1b]2; [{:2}/{:2}] {} \x07".format(i, len(urls), url))
             sleep(0.5)
             try:
                 command = '/usr/bin/aria2c --retry-wait 5 --dir {} -x 8 {}'.format(save,
