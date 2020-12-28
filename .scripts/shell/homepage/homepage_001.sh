@@ -2,12 +2,12 @@
 WALLPAPERS=~/Pictures/wallpapers
 
 main() {
-    js=~/.scripts/shell/homepage/script.js
-    css=~/.scripts/shell/homepage/style.css
+    js=~/dotfiles/.scripts/shell/homepage/script.js
+    css=~/dotfiles/.scripts/shell/homepage/style.css
 
     cd "$WALLPAPERS" || return
 
-    [ -f homepage.html ] && rm -vfi homepage.html
+    [ -f homepage.html ] && rm -i homepage.html
     cat << EOF > homepage.html
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,7 @@ main() {
         <style>$(cat "$css")</style>
     </head>
     <body>
-        <div id="search"><input autofocus></div> 
+        <div id="search"><input autofocus><div id="bar"></div></div> 
         <div id="clock"></div> 
         <script>
             let imgs = [$(find . -iname '*.jpg' -printf '"%p",')];
@@ -34,4 +34,4 @@ main() {
 EOF
 }
 
-[ -d "$WALLPAPERS" ] && main
+ [ -d "$WALLPAPERS" ] && main
