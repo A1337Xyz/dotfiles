@@ -2,8 +2,8 @@
 WALLPAPERS=~/Pictures/wallpapers
 
 main() {
-    js=~/dotfiles/.scripts/shell/homepage/script.js
-    css=~/dotfiles/.scripts/shell/homepage/style.css
+    js=~/.scripts/shell/homepage/script.js
+    css=~/.scripts/shell/homepage/style.css
 
     cd "$WALLPAPERS" || return
 
