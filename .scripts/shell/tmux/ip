@@ -1,0 +1,2 @@
+#!/bin/sh
+ip -br a | awk '/UP/{print $3}' | cut -d'/' -f1

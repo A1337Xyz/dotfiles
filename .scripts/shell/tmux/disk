@@ -1,0 +1,8 @@
+#!/bin/sh
+
+df -h /home | awk 'END {printf("#[fg=blue]%s=%s#[default]", $6, $4)}'
+for dev in /dev/sd[b-f][0-9];do
+    [ -b "$dev" ] && df -h "$dev" |
+        awk 'END {printf(" #[fg=cyan]%s=%s#[default]", $1, $4)}'
+done
+printf '\n'
